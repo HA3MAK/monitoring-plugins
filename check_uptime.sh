@@ -9,7 +9,8 @@
 #   Web:    https://github.com/HA3MAK/monitoring-plugins
 #
 #Set some variables
-HOMEDIR=$(cd ~; pwd)
+ID=$(id -u -n)
+HOMEDIR=$(eval echo "~${ID}")
 UPTIME_FILE="${HOMEDIR}/uptime.stat"
 CURRENT_UPTIME=$(grep -o "^[0-9]*" /proc/uptime)
 
