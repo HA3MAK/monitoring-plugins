@@ -23,6 +23,7 @@ usage() {
     echo ""
 	echo ""
 	echo "Options:"
+	echo "  -c               Returns \"CRITICAL\" without checking actual state."
 	echo "  --help, -h       Shows this help."
 	echo ""
 	echo ""
@@ -122,6 +123,19 @@ calculate_uptime() {
 
 }
 
+exit_ok() {
+		#There was no reboot since the last check
+		up_since=$(calculate_uptime ${CURRENT_UPTIME})
+		echo "OK - ${up_since}"
+		exit 0
+}
+
+exit_critical() {
+		#There was a reboot
+		echo "CRITICAL - Host restarted!"
+		exit 2
+}
+
 #The only command line argument we accept is "-h" and "--help"
 if [ ! -z "${1}" ]
 then
@@ -130,6 +144,10 @@ then
 			#Print help and exit
 			usage
 			exit 0
+		;;
+		-c)
+			#Don't do anything just exit with critical
+			exit_critical
 		;;
 		*)
 			#Invalid argument was found. Exit with code of unknown state
@@ -149,14 +167,11 @@ uptime_update
 case "${EXIT_CODE}" in
 	0)
 		#There was no reboot since the last check
-		up_since=$(calculate_uptime ${CURRENT_UPTIME})
-		echo "OK - ${up_since}"
-		exit 0
+		exit_ok
 	;;
 	2)
 		#There was a reboot
-		echo "CRITICAL - Host restarted!"
-		exit 2
+		exit_critical
 	;;
 esac
 
