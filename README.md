@@ -23,6 +23,10 @@ Used for collect information about current TCP, UDP and ICMP connections.
 | `--treshold` | Sets "warning" and "critical" treshold for selected metrics. Can be used many times.   |
 | `--help`     | Shows detailed help for usage.                                                         |
 
+#### check_net_usage.sh
+
+Used for collect performance data about usage of network interfaces.
+
 #### check_systemd.sh
 
 This plugin is responsible for monitoring systemd units, timers and/or sockets. If there's one or more
