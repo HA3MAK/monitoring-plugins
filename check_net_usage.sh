@@ -92,7 +92,7 @@ do
 
 		# Calculate average speed since the last check
 		speed_rx=$(echo "scale=0;(${bytes_rx}/${check_time})*8" | ${BC} -l) # bits/s
-		speed_tx=$(echo "scale=0;(${bytes_rx}/${check_time})*8" | ${BC} -l) # bits/s
+		speed_tx=$(echo "scale=0;(${bytes_tx}/${check_time})*8" | ${BC} -l) # bits/s
 
 		# Write perfdata of interface into the PERFDATA variable
 		PERFDATA="${PERFDATA}'${interface}_rx'=${speed_rx}bps '${interface}_tx'=${speed_tx}bps "
