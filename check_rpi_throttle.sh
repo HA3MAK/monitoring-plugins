@@ -13,6 +13,14 @@ VCGENCMD=$(which vcgencmd 2>/dev/null)
 AWK=$(which gawk 2>/dev/null)
 SUDO=$(which sudo 2>/dev/null)
 
+# Are we on a Raspberry Pi?
+grep -q "^Raspberry Pi" /sys/firmware/devicetree/base/model 2>/dev/null
+if [ $? -ne 0 ]
+then
+	echo "UNKNOWN - This plugin can be used only on Raspberry Pi!"
+	exit 3
+fi
+
 # Dependency checks
 if [ -z ${VCGENCMD} ]
 then
