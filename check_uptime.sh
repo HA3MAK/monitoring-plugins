@@ -20,7 +20,7 @@ usage() {
 	echo "Usage: ${script_name} [--help]"
 	echo ""
 	echo "  This Icinga plugin alerts when host restarted."
-    echo ""
+	echo ""
 	echo ""
 	echo "Options:"
 	echo "  -c               Returns \"CRITICAL\" without checking actual state."
@@ -146,6 +146,8 @@ then
 			exit 0
 		;;
 		-c)
+			#Write current uptime
+			uptime_update
 			#Don't do anything just exit with critical
 			exit_critical
 		;;
