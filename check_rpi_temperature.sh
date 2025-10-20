@@ -35,7 +35,7 @@ usage() {
 	echo "Options:"
 	echo "  --warning, -w    Sets \"warning\" treshold for SoC temperature"
 	echo "                   (Default value: ${TRESHOLD_WARNING})"
-	echo "  --critical, -c   Sets \"warning\" treshold for SoC temperature"
+	echo "  --critical, -c   Sets \"critical\" treshold for SoC temperature"
 	echo "                   (Default value: ${TRESHOLD_CRITICAL})"
 	echo "  --help, -h       Shows this help."
 	echo ""
