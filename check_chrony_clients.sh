@@ -46,11 +46,15 @@ else
 	}
 
 	{
-		hosts_num++;
-		ntp_packets+=$2;
-		ntp_packets_drop+=$3;
-		cmd_packets+=$7;
-		cmd_packets_drop+=$8;
+
+		# Count clients only which sent packet in the last hour
+		if ( $6 < 3600 || $10 < 3600 ) {
+			hosts_num++;
+			ntp_packets+=$2;
+			ntp_packets_drop+=$3;
+			cmd_packets+=$7;
+			cmd_packets_drop+=$8;
+		}
 	}
 
 	END {
